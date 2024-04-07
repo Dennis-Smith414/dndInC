@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <cstring>
 #include <cstdlib>
+#include <stdlib.h>
+#include <ctime>
 
 typedef struct {
     char name[10];
@@ -25,6 +27,17 @@ typedef struct {
     char* item;
     int count;
 } Inventory;
+
+typedef struct {
+    int sides;
+} Die;
+
+int rollDie(Die* die) {
+    srand(time(NULL));
+    
+    int random_num = rand() % die->sides + 1;
+    return random_num;
+}
 
 int getSelect() {
     int select;
@@ -96,7 +109,35 @@ int main() {
     free(inventory[1].item);
     free(inventory[2].item);
 
-    int selection = getSelect();
+    //dice
+    Die d20;
+    d20.sides = 20;
+    Die d12;
+    d12.sides = 12;
+    Die d10;
+    d10.sides = 10;
+    Die d8;
+    d8.sides = 8;
+    Die d6;
+    d6.sides = 6;
+    Die d4;
+    d4.sides = 4;
+
+    if(Nathan.health > 0){
+        printf("\nNathan's turn!\n");
+        int selection = getSelect();
+        if(selection = 1) {
+            printf("Your shadowy figure lunges toward the enemy\n");
+            int attackRoll = rollDie(&d20);
+            printf("you rolled a: %d\n", attackRoll);
+
+
+        }
+
+
+    }
+
+
 
     return 0;
 }
