@@ -125,6 +125,7 @@ int main() {
 
     if(Nathan.health > 0){
         printf("\nNathan's turn!\n");
+        printf("1: Attack 2. Inventory 3. Scan \n");
         int selection = getSelect();
         if(selection = 1) {
             printf("\nYour shadowy figure lunges toward the enemy\n");
@@ -150,6 +151,27 @@ int main() {
             else {
                 printf("You miss");
             }
+
+            //Stealth bouns action
+            printf("Do you choose to go into stealth? 1: Yes 2: No\n");
+            int baSelect = getSelect();
+            //FIGURE OUT A WAY TO LIMMIT NUM OF OPTIONS BASED ON NEED
+            if(baSelect = 1){
+                int stealthRoll = rollDie(&d20);
+                int stealthRollTotal = (stealthRoll + Nathan.dex + Nathan.profBouns);
+                if(stealthRollTotal >= Etranth.percep){
+                    Nathan.stealth = true;
+                    printf("You are in stealth\n");
+                } else {
+                    Nathan.stealth = false;
+                    printf("Failed to go into stealth\n");
+                }
+            }
+            else if(baSelect = 2){
+                printf("You choose to be seen!\n");
+                Nathan.stealth = false;
+            }
+
            
         }
 
