@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <cstring>
+#include <cstdlib>
 
 typedef struct {
     char name[10];
@@ -19,6 +20,11 @@ typedef struct {
     int profBouns;
     int percep;
 } Player;
+
+typedef struct {
+    char* item;
+    int count;
+} Inventory;
 
 void initPlayer(Player* player, double health, int ac, int str, int dex, int con,
                 int intel, int wis, int cha, bool stealth, int magbouns,
@@ -42,6 +48,7 @@ void initPlayer(Player* player, double health, int ac, int str, int dex, int con
 }
 
 int main() {
+    //create players
     Player Nathan;
     Player Litrix;
     Player Albrich;
@@ -57,77 +64,27 @@ int main() {
     initPlayer(&Etranth, 300, 10, 5, 0, 4, 2, 1, 4, false, 0,
                 0, 0, 0, 0, 13);
 
-    printf("Player Stats for Nathan:\n"); 
-    printf("  Name: %s\n", Nathan.name);
-    printf("  Health: %.2lf\n", Nathan.health); 
-    printf("  AC: %d\n", Nathan.ac);
-    printf("  Strength: %d\n", Nathan.str);
-    printf("  Dexterity: %d\n", Nathan.dex);
-    printf("  Constitution: %d\n", Nathan.con);
-    printf("  Intelligence: %d\n", Nathan.intel);
-    printf("  Wisdom: %d\n", Nathan.wis);
-    printf("  Charisma: %d\n", Nathan.cha);
-    printf("  Stealth: %s\n", Nathan.stealth ? "True" : "False");
-    printf("  Magic Bonus: %d\n", Nathan.magbouns);
-    printf("  Spell Save: %d\n", Nathan.spellSave);
-    printf("  Mana Points: %d\n", Nathan.mp);
-    printf("  Counter: %d\n", Nathan.counter);
-    printf("  Proficiency Bonus: %d\n", Nathan.profBouns);
-    printf("  Perception: %d\n", Nathan.percep);
+    //inventory
+    Inventory inventory[3];
+    inventory[0].item = (char*)malloc(strlen("Potion") + 1);
+    strcpy(inventory[0].item, "Potion");
+    inventory[0].count = 3;
 
-    printf("\nPlayer Stats for Litrix:\n"); 
-    printf("  Name: %s\n", Litrix.name);
-    printf("  Health: %.2lf\n", Litrix.health); 
-    printf("  AC: %d\n", Litrix.ac);
-    printf("  Strength: %d\n", Litrix.str);
-    printf("  Dexterity: %d\n", Litrix.dex);
-    printf("  Constitution: %d\n", Litrix.con);
-    printf("  Intelligence: %d\n", Litrix.intel);
-    printf("  Wisdom: %d\n", Litrix.wis);
-    printf("  Charisma: %d\n", Litrix.cha);
-    printf("  Stealth: %s\n", Litrix.stealth ? "True" : "False");
-    printf("  Magic Bonus: %d\n", Litrix.magbouns);
-    printf("  Spell Save: %d\n", Litrix.spellSave);
-    printf("  Mana Points: %d\n", Litrix.mp);
-    printf("  Counter: %d\n", Litrix.counter);
-    printf("  Proficiency Bonus: %d\n", Litrix.profBouns);
-    printf("  Perception: %d\n", Litrix.percep);
+    inventory[1].item = (char*)malloc(strlen("Revive") + 1);
+    strcpy(inventory[1].item, "Revive");
+    inventory[1].count = 3;
 
-    printf("\nPlayer Stats for Albrich:\n"); 
-    printf("  Name: %s\n", Albrich.name);
-    printf("  Health: %.2lf\n", Albrich.health); 
-    printf("  AC: %d\n", Albrich.ac);
-    printf("  Strength: %d\n", Albrich.str);
-    printf("  Dexterity: %d\n", Albrich.dex);
-    printf("  Constitution: %d\n", Albrich.con);
-    printf("  Intelligence: %d\n", Albrich.intel);
-    printf("  Wisdom: %d\n", Albrich.wis);
-    printf("  Charisma: %d\n", Albrich.cha);
-    printf("  Stealth: %s\n", Albrich.stealth ? "True" : "False");
-    printf("  Magic Bonus: %d\n", Albrich.magbouns);
-    printf("  Spell Save: %d\n", Albrich.spellSave);
-    printf("  Mana Points: %d\n", Albrich.mp);
-    printf("  Counter: %d\n", Albrich.counter);
-    printf("  Proficiency Bonus: %d\n", Albrich.profBouns);
-    printf("  Perception: %d\n", Albrich.percep);
+    inventory[2].item = (char*)malloc(strlen("Bomb") + 1);
+    strcpy(inventory[2].item, "Bomb");
+    inventory[2].count = 3;
 
-    printf("\nPlayer Stats for Etranth:\n"); 
-    printf("  Name: %s\n", Etranth.name);
-    printf("  Health: %.2lf\n", Etranth.health); 
-    printf("  AC: %d\n", Etranth.ac);
-    printf("  Strength: %d\n", Etranth.str);
-    printf("  Dexterity: %d\n", Etranth.dex);
-    printf("  Constitution: %d\n", Etranth.con);
-    printf("  Intelligence: %d\n", Etranth.intel);
-    printf("  Wisdom: %d\n", Etranth.wis);
-    printf("  Charisma: %d\n", Etranth.cha);
-    printf("  Stealth: %s\n", Etranth.stealth ? "True" : "False");
-    printf("  Magic Bonus: %d\n", Etranth.magbouns);
-    printf("  Spell Save: %d\n", Etranth.spellSave);
-    printf("  Mana Points: %d\n", Etranth.mp);
-    printf("  Counter: %d\n", Etranth.counter);
-    printf("  Proficiency Bonus: %d\n", Etranth.profBouns);
-    printf("  Perception: %d\n", Etranth.percep);
+    for (int i = 0; i < 3; i++){
+        printf("Item: %s, Count: %d\n", inventory[i].item, inventory[i].count);
+    }
+
+    free(inventory[0].item);
+    free(inventory[1].item);
+    free(inventory[2].item);
 
     return 0;
 }
