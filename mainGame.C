@@ -127,13 +127,31 @@ int main() {
         printf("\nNathan's turn!\n");
         int selection = getSelect();
         if(selection = 1) {
-            printf("Your shadowy figure lunges toward the enemy\n");
-            int attackRoll = rollDie(&d20);
-            printf("you rolled a: %d\n", attackRoll);
+            printf("\nYour shadowy figure lunges toward the enemy\n");
+            int roll = rollDie(&d20);
+            int attackRoll = (roll + Nathan.dex + Nathan.profBouns);
 
-
+            if(attackRoll > Etranth.ac){
+                int damageRoll = rollDie(&d12);
+                int damageRollTotal = (damageRoll + Nathan.dex + Nathan.profBouns);
+                if(Nathan.stealth) {
+                    damageRollTotal += 8;
+                    printf("You do good rouge!\n");
+                }
+                if(roll == 20){
+                    damageRollTotal = damageRollTotal *2;
+                    printf("You crit!\n");
+                }
+                printf("\nYou dealt %d", damageRollTotal);
+                printf(" damage!\n");
+                Etranth.health = Etranth.health - damageRollTotal;
+                printf("Etranth health: %.2f\n", Etranth.health);
+            }
+            else {
+                printf("You miss");
+            }
+           
         }
-
 
     }
 
