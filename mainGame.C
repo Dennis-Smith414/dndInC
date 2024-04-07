@@ -26,6 +26,16 @@ typedef struct {
     int count;
 } Inventory;
 
+int getSelect() {
+    int select;
+    do {
+        printf("Please select a valid option: ");
+        scanf("%d", &select);
+    } while (select < 0 || select > 4);
+    return select;
+} 
+
+
 void initPlayer(Player* player, double health, int ac, int str, int dex, int con,
                 int intel, int wis, int cha, bool stealth, int magbouns,
                 int spellSave, int mp, int counter, int profBouns, int percep) {
@@ -85,6 +95,8 @@ int main() {
     free(inventory[0].item);
     free(inventory[1].item);
     free(inventory[2].item);
+
+    int selection = getSelect();
 
     return 0;
 }
