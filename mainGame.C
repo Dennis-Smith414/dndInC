@@ -156,7 +156,7 @@ int main() {
             printf("Do you choose to go into stealth? 1: Yes 2: No\n");
             int baSelect = getSelect();
             //FIGURE OUT A WAY TO LIMMIT NUM OF OPTIONS BASED ON NEED
-            if(baSelect = 1){
+            if(baSelect == 1){
                 int stealthRoll = rollDie(&d20);
                 int stealthRollTotal = (stealthRoll + Nathan.dex + Nathan.profBouns);
                 if(stealthRollTotal >= Etranth.percep){
@@ -167,7 +167,7 @@ int main() {
                     printf("Failed to go into stealth\n");
                 }
             }
-            else if(baSelect = 2){
+            else if(baSelect == 2) {
                 printf("You choose to be seen!\n");
                 Nathan.stealth = false;
             }
