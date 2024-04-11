@@ -123,15 +123,15 @@ int main() {
     Die d4;
     d4.sides = 4;
 
+    //Nathan turn
     if(Nathan.health > 0){
         printf("\nNathan's turn!\n");
-        printf("1: Attack 2. Inventory 3. Scan \n");
+        printf("1: Attack 2. Inventory 3. Scan\n");
         int selection = getSelect();
         if(selection = 1) {
             printf("\nYour shadowy figure lunges toward the enemy\n");
             int roll = rollDie(&d20);
             int attackRoll = (roll + Nathan.dex + Nathan.profBouns);
-
             if(attackRoll > Etranth.ac){
                 int damageRoll = rollDie(&d12);
                 int damageRollTotal = (damageRoll + Nathan.dex + Nathan.profBouns);
@@ -171,13 +171,63 @@ int main() {
                 printf("You choose to be seen!\n");
                 Nathan.stealth = false;
             }
-
-           
         }
 
     }
 
+    //Litrix turn
+    else if(Litrix.health > 0) {
+        printf("\nLitrix's turn!\n");
+        printf("1: Attack 2. Inventory\n");
+        int selection = getSelect();
+        //Main action
+        if(selection = 1) {
+            printf("\nYou slash your sword at the enemy\n");
+            int roll = rollDie(&d20);
+            int attackRoll = (roll + Litrix.dex + Litrix.profBouns);
 
-
+            if(attackRoll > Etranth.ac){
+                int damageRoll = rollDie(&d12);
+                int damageRollTotal = (damageRoll + Litrix.dex + Litrix.profBouns);
+                if(roll == 20){
+                    damageRollTotal = damageRollTotal *2;
+                    printf("You crit!\n");
+                }
+                printf("\nYou dealt %d", damageRollTotal);
+                printf(" damage!\n");
+                Etranth.health = Etranth.health - damageRollTotal;
+                printf("Etranth health: %.2f\n", Etranth.health);
+            }
+            else {
+                printf("You miss");
+            }
+            //Bouns Action
+            printf("Would you like attack again?: 1. Yes 2. No");
+            int baSelect = getSelect();
+            if(baSelect == 1){
+                int baRoll = rollDie(&d20);
+                int baRollTotal = (baRoll + Litrix.dex + Litrix.profBouns);
+                if(baRollTotal >= Etranth.ac){
+                    int baDamageRoll = rollDie(&d12);
+                    int baDamageRollTotal = (baDamageRoll + Litrix.dex + Litrix.profBouns);
+                    if(roll == 20){
+                        baDamageRollTotal = baDamageRollTotal *2;
+                        printf("You crit!\n");
+                    }
+                    printf("\nYou dealt %d", baDamageRollTotal);
+                    printf(" damage!\n");
+                    Etranth.health = Etranth.health - baDamageRollTotal;
+                    printf("Etranth health: %.2f\n", Etranth.health);
+                    printf("You did addtional damage \n");
+                    } else {
+                        printf("Failed to do additonal damage\n");
+                    }
+            }
+            else if(baSelect == 2) {
+                printf("You choose to hold\n");
+            
+            }
+        }
+    }
     return 0;
 }
