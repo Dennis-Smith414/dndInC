@@ -171,17 +171,13 @@ int main() {
                 printf("You choose to be seen!\n");
                 Nathan.stealth = false;
             }
-        }
-
-    }
-
-    //Litrix turn
-    else if(Litrix.health > 0) {
+        } 
+    if(Litrix.health > 0) { //Litrix turn
         printf("\nLitrix's turn!\n");
         printf("1: Attack 2. Inventory\n");
-        int selection = getSelect();
+        int litrixSelection = getSelect();
         //Main action
-        if(selection = 1) {
+        if(litrixSelection = 1) {
             printf("\nYou slash your sword at the enemy\n");
             int roll = rollDie(&d20);
             int attackRoll = (roll + Litrix.dex + Litrix.profBouns);
@@ -199,10 +195,10 @@ int main() {
                 printf("Etranth health: %.2f\n", Etranth.health);
             }
             else {
-                printf("You miss");
+                printf("You miss\n");
             }
             //Bouns Action
-            printf("Would you like attack again?: 1. Yes 2. No");
+            printf("Would you like attack again?: 1. Yes 2. No\n");
             int baSelect = getSelect();
             if(baSelect == 1){
                 int baRoll = rollDie(&d20);
@@ -220,7 +216,7 @@ int main() {
                     printf("Etranth health: %.2f\n", Etranth.health);
                     printf("You did addtional damage \n");
                     } else {
-                        printf("Failed to do additonal damage\n");
+                        printf("\nFailed to do additonal damage\n");
                     }
             }
             else if(baSelect == 2) {
@@ -229,5 +225,8 @@ int main() {
             }
         }
     }
+}
+
+
     return 0;
 }
